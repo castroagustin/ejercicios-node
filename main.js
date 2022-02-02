@@ -1,23 +1,28 @@
 const express = require('express');
-const exphbs = require('express-handlebars');
 
 const app = express();
 
-app.engine('hbs', exphbs.engine({
-    extname: '.hbs',
-    defaultLayout: 'index.hbs'
-}))
-
-app.set('view engine', 'hbs');
 app.set('views', './views');
+
+// Plantillas con .pug
+/*
+app.set('view engine', 'pug');
+
 app.get('/', (req, res) => {
-    res.render('datos.hbs', {
-        name: 'Agustin',
-        surname: 'Castro',
-        age: 18,
-        email: 'agus.castro915@gmail.com',
-        phone: 3815555555
+    res.render('hello.pug', {
+        message: 'Hola pug'
     })
+})
+
+app.get('/datos', (req, res) => {
+    res.render('medidor', req.query)
+})*/
+
+// Plantillas con .ejs
+app.set('view engine', 'ejs');
+
+app.get('/datos', (req, res) => {
+    res.render('pages/index', req.query)
 })
 
 app.use(express.static('public'))

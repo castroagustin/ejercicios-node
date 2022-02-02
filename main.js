@@ -2,27 +2,19 @@ const express = require('express');
 
 const app = express();
 
+app.use(express.urlencoded({ extended: true }))
+
+app.set('view engine', 'ejs');
 app.set('views', './views');
 
-// Plantillas con .pug
-/*
-app.set('view engine', 'pug');
+const historialArr = []
 
 app.get('/', (req, res) => {
-    res.render('hello.pug', {
-        message: 'Hola pug'
-    })
+    res.render('pages/index', { historialArr })
 })
-
-app.get('/datos', (req, res) => {
-    res.render('medidor', req.query)
-})*/
-
-// Plantillas con .ejs
-app.set('view engine', 'ejs');
-
-app.get('/datos', (req, res) => {
-    res.render('pages/index', req.query)
+app.post('/personas', (req, res) => {
+    historialArr.push(req.body)
+    res.redirect('/')
 })
 
 app.use(express.static('public'))

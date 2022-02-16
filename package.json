@@ -1,9 +1,10 @@
 {
-  "name": "views",
+  "name": "clases",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
+    "build": "babel ./origen.js -o ./destino.js -w",
     "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,6 +12,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/cli": "^7.17.3",
+    "@babel/core": "^7.17.4",
+    "@babel/preset-env": "^7.16.11",
     "express": "^4.17.2",
     "nodemon": "^2.0.15",
     "socket.io": "^4.4.1"
